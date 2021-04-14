@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\ssali\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\ssali\\.nuget\\packages"
+    ]
+  }
+}
