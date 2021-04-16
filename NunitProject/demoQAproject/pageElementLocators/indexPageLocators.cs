@@ -1,20 +1,16 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace SeleniumTest.demoQAProject.pageElementLocators
 {
     class indexPageLocators
     {
-        private IWebDriver driver;
+        IWebDriver driver;
         public indexPageLocators(IWebDriver driver)
         {
             this.driver = driver;
             
         }
-        IWebElement FormButtons => driver.FindElement(By.XPath("//div[@class='card-body']/h5[contains(text(),'Forms')]"));
+        private IWebElement FormButtons => driver.FindElement(By.CssSelector("#app div.card:nth-child(2)"));
         public IWebElement getFormButton() { return FormButtons; }
     }
 }

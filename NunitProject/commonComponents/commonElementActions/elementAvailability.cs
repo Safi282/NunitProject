@@ -1,31 +1,35 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using OpenQA.Selenium.Interactions;
 
 namespace SeleniumTest.commonComponents.commonElementActions
 {
     class elementAvailability
     {
-        public static bool isVisibleOnScreen(IWebElement element)
+        public static bool M_isVisibleOnScreen(IWebDriver driver, IWebElement element)
         {
+            Actions action = new Actions(driver);
             bool isVisible = false;
             
             if (element.Displayed)
             {
                 isVisible = true;
+                action.MoveToElement(element);
+                action.Perform();
             }
             return isVisible;
         }
 
-        public static bool isClickableOnScreen(IWebElement element)
+        public static bool M_isClickableOnScreen(IWebDriver driver, IWebElement element)
         {
+
+            
             bool isClickable = false;
-            if (isVisibleOnScreen(element))
+            if (M_isVisibleOnScreen(driver,element))
             {
                 if (element.Enabled)
                 {
                     isClickable = true;
+
                 }
             }
             return isClickable;

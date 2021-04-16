@@ -1,15 +1,12 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SeleniumTest.commonComponents.commonElementActions
 {
     class buttonActions
     {
-        public static void clickOnbutton(IWebElement button)
+        public static void M_clickOnbutton(IWebDriver driver ,IWebElement button)
         {
-            if (elementAvailability.isClickableOnScreen(button)){
+            if (elementAvailability.M_isClickableOnScreen(driver,button)){
                 button.Click();
             }
         }

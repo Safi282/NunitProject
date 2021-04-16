@@ -14,27 +14,27 @@ namespace SeleniumTest.demoQAProject.pageElementTests
         List<String> actualRequiredElements = new List<String>();
          
         [Test]
-        public void fillRequiredFields() {
+        public void M_fillRequiredFields() {
             //Step 2: click on forms to navigate to forms page
-            indexPA.navigateToFormsPage();
+            indexPA.M_navigateToFormsPage();
             //Step 3: click on practice form to open form
-            navigationPA.navigateToPracticeForm();
+            navigationPA.M_navigateToPracticeForm();
             //Step 4: fill out mandatory fields and save result
-            bool isSuccess =practicePA.fillForm("TestingFirstName", "TestingLastName", "Male","1234567890");
+            bool isSuccess =practicePA.M_fillForm();
             //Step 5: Assert Submitted Successfully
             Assert.True(isSuccess);
         }
         
         [Test]
-        public void submitEmptyForm() {
+        public void M_submitEmptyForm() {
             //Step 2: click on forms to navigate to forms page
-            indexPA.navigateToFormsPage();
+            indexPA.M_navigateToFormsPage();
             //Step 3: click on practice form to open form
-            navigationPA.navigateToPracticeForm();
+            navigationPA.M_navigateToPracticeForm();
             //Step 4: Submit Empty form
-            practicePA.submitForm();
+            practicePA.M_submitForm();
             //Step 5: Compare 2 Arraylist
-            actualRequiredElements=practicePA.RequiredFields();
+            actualRequiredElements=practicePA.M_RequiredFields();
             //Step 5: Assert "Firstname", "Lastname", "Gender", "UserNumber" are Required
             Assert.AreEqual(actualRequiredElements, expectedRequiredElements);
         }

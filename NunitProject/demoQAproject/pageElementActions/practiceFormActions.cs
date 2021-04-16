@@ -3,7 +3,6 @@ using SeleniumTest.commonComponents.commonElementActions;
 using SeleniumTest.demoQAProject.pageElementLocators;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SeleniumTest.demoQAProject.pageElementActions
 {
@@ -14,58 +13,66 @@ namespace SeleniumTest.demoQAProject.pageElementActions
         bool successfullySubmitted = false;
         List<IWebElement> allInputElements = null;
         List<String> requiredElements = new List<String>();
-        public practiceFormActions(IWebDriver driver)
+        private String firstName = null;
+        private String lastName = null;
+        private String gender = null;
+        private String userNumber = null;
+        public practiceFormActions(IWebDriver driver ,String paramFirstName, String paramLastName, String paramGender, String paramUserNumber)
         {
             this.driver = driver;
             practiceFormPL = new practiceFormLocators(this.driver);
+            firstName = paramFirstName;
+            lastName = paramLastName;
+            gender = paramGender;
+            userNumber = paramUserNumber;
         }
 
-        public void inputFirstName(String firstName)
+        private void M_inputFirstName(String firstName)
         {
-            textBoxActions.sendInput(practiceFormPL.getFirstNameTextbox(), firstName);
+            textBoxActions.M_sendInput(driver,practiceFormPL.getFirstNameTextbox(), firstName);
         }
-        public void inputLastName(String lastName)
+        private void M_inputLastName(String lastName)
         {
-            textBoxActions.sendInput(practiceFormPL.getLastNameTextBox(), lastName);
+            textBoxActions.M_sendInput(driver,practiceFormPL.getLastNameTextBox(), lastName);
         }
-        public void selectMaleGender()
+        private void M_selectMaleGender()
         {
             IWebElement maleSelectionRadioButton = practiceFormPL.getMaleGenderRadioButton();
-            buttonActions.clickOnbutton(maleSelectionRadioButton);
+            buttonActions.M_clickOnbutton(driver, maleSelectionRadioButton);
         }
-        public void selectFemaleGender()
+        private void M_selectFemaleGender()
         {
-            buttonActions.clickOnbutton(practiceFormPL.getFemaleGenderRadioButton());
+            buttonActions.M_clickOnbutton(driver, practiceFormPL.getFemaleGenderRadioButton());
         }
-        public void selectOtherGender()
+        private void M_selectOtherGender()
         {
-            buttonActions.clickOnbutton(practiceFormPL.getOtherGenderRadioButton());
+            buttonActions.M_clickOnbutton(driver, practiceFormPL.getOtherGenderRadioButton());
         }
-        public void inputUserNumber(String userNumber)
+        private void M_inputUserNumber(String userNumber)
         {
-           textBoxActions.sendInput(practiceFormPL.getUserNumber(), userNumber);
+           textBoxActions.M_sendInput(driver, practiceFormPL.getUserNumber(), userNumber);
         }
-        public void submitForm()
+        public void M_submitForm()
         {
-            buttonActions.clickOnbutton(practiceFormPL.getSubmitButton());
+            buttonActions.M_clickOnbutton(driver,practiceFormPL.getSubmitButton());
         }
 
-        public bool successfulSubmit()
+        private bool M_successfulSubmit()
         {
             bool isSuccess = false;
-            if (elementAvailability.isVisibleOnScreen(practiceFormPL.getSuccessDialogue()))
+            if (elementAvailability.M_isVisibleOnScreen(driver,practiceFormPL.getSuccessDialogue()))
             {
                 isSuccess = true;
             }
             return isSuccess;
         }
 
-        public List<String> RequiredFields()
+        public List<String> M_RequiredFields()
         {
             allInputElements=practiceFormPL.getAllInputElements();
             for(int i = 0; i < allInputElements.Count; i++)
             {
-                if (elementAvailability.isVisibleOnScreen(allInputElements[i]))
+                if (elementAvailability.M_isVisibleOnScreen(driver,allInputElements[i]))
                 {
                     if (allInputElements[i].GetAttribute("required") != null)
                     {
@@ -76,35 +83,35 @@ namespace SeleniumTest.demoQAProject.pageElementActions
             return requiredElements;
         }
 
-        public bool fillForm(String firstName, String lastName, String gender, String userNumber)
+        public bool M_fillForm()
         {
             
-            inputFirstName(firstName);
-            inputLastName(lastName);
+            M_inputFirstName(firstName);
+            M_inputLastName(lastName);
             switch (gender)
             {
                 case "Male": {
-                        selectMaleGender();
+                        M_selectMaleGender();
                         break;
                     }
                 case "Female": {
-                        selectFemaleGender();
+                        M_selectFemaleGender();
                         break;
                     }
                 case "Other": {
-                        selectOtherGender();
+                        M_selectOtherGender();
                         break;
                     }
                 default: {
-                        selectMaleGender();
+                        M_selectMaleGender();
                         break;
                     }
             }
-            inputUserNumber(userNumber);
-            submitForm();
+            M_inputUserNumber(userNumber);
+            M_submitForm();
             if (successfullySubmitted)
                 successfullySubmitted = false;
-            successfullySubmitted = successfulSubmit();
+            successfullySubmitted = M_successfulSubmit();
             return successfullySubmitted;
         }
     }

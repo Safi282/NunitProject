@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumTest.commonComponents.commonElementActions;
 using SeleniumTest.demoQAProject.pageElementLocators;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SeleniumTest.demoQAProject.pageElementActions
 {
@@ -17,9 +14,9 @@ namespace SeleniumTest.demoQAProject.pageElementActions
             indexPL = new indexPageLocators(driver);
         }
 
-        public void navigateToFormsPage()
+        public void M_navigateToFormsPage()
         {
-            buttonActions.clickOnbutton(indexPL.getFormButton());
+            buttonActions.M_clickOnbutton(driver,indexPL.getFormButton());
         }
     }
 }

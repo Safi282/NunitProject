@@ -1,9 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumTest.commonComponents.commonElementActions;
 using SeleniumTest.demoQAProject.pageElementLocators;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SeleniumTest.demoQAProject.pageElementActions
 {
@@ -17,9 +14,9 @@ namespace SeleniumTest.demoQAProject.pageElementActions
             navigationPL = new navigationPanelLocators(this.driver);
         }
 
-        public void navigateToPracticeForm()
+        public void M_navigateToPracticeForm()
         {
-            buttonActions.clickOnbutton(navigationPL.getPracticeFromPageLink());
+            buttonActions.M_clickOnbutton(driver,navigationPL.getPracticeFromPageLink());
         }
     }
 }
